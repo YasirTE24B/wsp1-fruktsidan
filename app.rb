@@ -14,5 +14,17 @@ class App < Sinatra::Base
     end
 
     #TODO: Skriv routen hämtar alla frukter i databasen
+    
+  get '/fruits' do
+    @fruits = db.execute('SELECT * FROM products')
+    ap @fruits
+    erb(:"fruits/index")
+  end
 
+  get '/fruits/:id' do | id |
+    @fruit = db.execute('SELECT * FROM fruits WHERE id=?',id).first
+    ap @fruit
+    erb(:"fruits/show")
+  end
+    
 end
