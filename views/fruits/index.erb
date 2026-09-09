@@ -6,6 +6,8 @@
     <% @fruits.each do |fruit| %>
         <li> 
             <h3><%= fruit["name"] %> </h3>
+            <a href="/fruits/<%= fruit["id"]%>">
+                <%= fruit["name"] %></a>
             <p><%= fruit["description"] %></p>  
         </li>
     <% end %>
