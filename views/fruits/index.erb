@@ -1,6 +1,10 @@
 <h2>Alla frukter i butiken</h2>
 
-<code>TODO: Skriv ut en lista (ul + li) för att visa alla frukter i databasen</code>
+<h3>Filtrera kategorier:</h3>
+<a href="/fruits"><button>Visa alla frukter</button></a>
+<a href="/fruits/category/1"><button>Frukt med frön</button></a>
+<a href="/fruits/category/2"><button>Stenfrukt</button></a>
+<a href="/fruits/category/3"><button>Extra</button></a>
 
 <ul>
     <% @fruits.each do |fruit| %>
@@ -9,6 +13,17 @@
             <a href="/fruits/<%= fruit["id"]%>">
                 <%= fruit["name"] %></a>
             <p><%= fruit["description"] %></p>  
+            <p>Tastiness: <%= "* " * fruit["tastiness"].to_i %> (<%= fruit["tastiness"].to_i %>)</p>
+
+            <img src="<%= fruit["image"] %>">
+
+            <form class="delete" action="/fruits/<%=fruit["id"]%>/delete" method="post">
+       		    <input type="submit" value="Ta bort">
+   	        </form>
+            <form class="delete" action="/fruits/<%= fruit['id'] %>/edit" method="get">
+       		    <input type="submit" value="Uppdatera frukt">
+   	        </form>
+
         </li>
     <% end %>
 </ul>
